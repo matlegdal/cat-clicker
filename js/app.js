@@ -7,7 +7,7 @@ var listCats = function() {
         li.id = "selector-" + cat.id;
 
         li.addEventListener("click", function () {
-
+            selectCat(this);
             displayCat(cat);
         }, false);
 
@@ -18,7 +18,10 @@ var listCats = function() {
 
 var selectCat = function(li) {
     var items = document.getElementsByClassName("cat-list-item");
-
+    for (var i = 0; i<items.length; i++) {
+        items[i].classList.remove("active");
+    }
+    li.classList.add("active");
 };
 
 var displayCat = function(cat) {
@@ -38,3 +41,4 @@ var displayCat = function(cat) {
 };
 
 listCats();
+displayCat(cats[0]);
