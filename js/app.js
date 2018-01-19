@@ -1,4 +1,5 @@
 
+var cats = [];
 var imgObjects = [
     {
         src: 'images/cat.jpg',
@@ -12,26 +13,45 @@ var imgObjects = [
     }
 ];
 
-var cats = [];
-
 imgObjects.forEach(function (imgObject) {
     var image = new Image();
     image.src = imgObject.src;
     image.id = imgObject.id;
     image.classList.add("img-fluid");
+
+    image.likes = 0;
+    image.name = imgObject.name;
+    image.addEventListener("click", function () {
+        this.likes++;
+        updateCounter(image);
+    }, false);
+
     cats.push(image);
+});
+
+cats.forEach(function (cat) {
+    var div = document.createElement("DIV");
+    div.classList.add("col-"+(12/cats.length));
+    document.getElementById("imgRow").appendChild(div);
+
+    var catName = document.createElement("H5");
+    catName.textContent = cat.name;
+    div.appendChild(catName);
+
+    div.appendChild(cat);
+
+    var catLikes = document.createElement("p");
+    catLikes.textContent = cat.likes.toString() + " likes for this cat";
+    catLikes.id = "likes-"+cat.id;
+    div.appendChild(catLikes);
 });
 
 
 
-var catImg = document.getElementById("cat-1");
-var catCounter = 0;
+// var catImg = document.getElementById("cat-1");
+// var catCounter = 0;
 
-var updateCounter = function () {
-    document.getElementById("myCounter").textContent=catCounter.toString();
+var updateCounter = function (cat) {
+    document.getElementById("likes-"+cat.id).textContent=cat.likes.toString() + " likes for this cat";
 };
 
-catImg.addEventListener("click", function () {
-    catCounter++;
-    updateCounter();
-}, false);
