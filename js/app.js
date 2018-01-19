@@ -1,8 +1,29 @@
 
-cats.forEach(function (cat) {
-    var div = document.createElement("DIV");
-    div.classList.add("col-"+(12/cats.length));
-    document.getElementById("imgRow").appendChild(div);
+var listCats = function() {
+    cats.forEach(function(cat){
+        var li = document.createElement("li");
+        li.textContent = cat.name.toString();
+        li.classList.add("list-group-item", "cat-list-item");
+        li.id = "selector-" + cat.id;
+
+        li.addEventListener("click", function () {
+
+            displayCat(cat);
+        }, false);
+
+        document.getElementById("listCats").appendChild(li);
+    });
+    document.getElementById("selector-"+cats[0].id).classList.add("active")
+};
+
+var selectCat = function(li) {
+    var items = document.getElementsByClassName("cat-list-item");
+
+};
+
+var displayCat = function(cat) {
+    var div = document.getElementById("displayCat");
+    div.innerHTML = '';
 
     var catName = document.createElement("H5");
     catName.textContent = cat.name;
@@ -14,4 +35,6 @@ cats.forEach(function (cat) {
     catLikes.textContent = cat.likes.toString() + " likes for this cat";
     catLikes.id = "likes-"+cat.id;
     div.appendChild(catLikes);
-});
+};
+
+listCats();

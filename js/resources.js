@@ -19,19 +19,19 @@ var imgObjects = [
 ];
 
 imgObjects.forEach(function (imgObject) {
-    var image = new Image();
-    image.src = imgObject.src;
-    image.id = imgObject.id;
-    image.classList.add("img-fluid");
+    var cat = new Image();
+    cat.src = imgObject.src;
+    cat.id = imgObject.id;
+    cat.classList.add("img-fluid", "rounded");
 
-    image.likes = 0;
-    image.name = imgObject.name;
-    image.addEventListener("click", function () {
+    cat.likes = 0;
+    cat.name = imgObject.name;
+    cat.addEventListener("click", function () {
         this.likes++;
-        updateCounter(image);
+        updateCounter(cat);
     }, false);
 
-    cats.push(image);
+    cats.push(cat);
 });
 
 var updateCounter = function (cat) {
