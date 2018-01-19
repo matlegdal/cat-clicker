@@ -46,12 +46,6 @@ cats.forEach(function (cat) {
     div.appendChild(catLikes);
 });
 
-
-
-// var catImg = document.getElementById("cat-1");
-// var catCounter = 0;
-
 var updateCounter = function (cat) {
     document.getElementById("likes-"+cat.id).textContent=cat.likes.toString() + " likes for this cat";
 };
-
