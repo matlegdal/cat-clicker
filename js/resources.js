@@ -34,9 +34,12 @@ const cats = (function catLoader () {
 
         cats.push(cat);
     });
+
+
+
     return cats;
 })();
 
 const updateCounter = function (cat) {
-    document.getElementById("likes-"+cat.id).textContent=cat.likes.toString() + " likes for this cat";
+    document.getElementById(`likes-${cat.id}`).textContent=`${cat.likes.toString()} likes for this cat`;
 };

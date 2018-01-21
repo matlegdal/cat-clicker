@@ -4,7 +4,7 @@
         const li = document.createElement("li");
         li.textContent = cat.name.toString();
         li.classList.add("list-group-item", "cat-list-item");
-        li.id = "selector-" + cat.id;
+        li.id = `selector-${cat.id}`;
 
         li.addEventListener("click", function () {
             selectCat(this);
@@ -13,7 +13,7 @@
 
         document.getElementById("listCats").appendChild(li);
     });
-    document.getElementById("selector-"+cats[0].id).classList.add("active")
+    document.getElementById(`selector-${cats[0].id}`).classList.add("active")
 })();
 
 function displayCat(cat) {
@@ -27,8 +27,8 @@ function displayCat(cat) {
     div.appendChild(cat);
 
     const catLikes = document.createElement("p");
-    catLikes.textContent = cat.likes.toString() + " likes for this cat";
-    catLikes.id = "likes-"+cat.id;
+    catLikes.textContent = `${cat.likes.toString()} likes for this cat`;
+    catLikes.id = `likes-${cat.id}`;
     div.appendChild(catLikes);
 }
 
