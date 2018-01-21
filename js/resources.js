@@ -19,27 +19,30 @@ const cats = (function catLoader () {
         }
     ];
 
-    imgObjects.forEach(function (imgObject) {
-        const cat = new Image();
-        cat.src = imgObject.src;
-        cat.id = imgObject.id;
-        cat.classList.add("img-fluid", "rounded");
+    class Cat extends Image{
+        constructor(imgObject){
+            super();
+            this.src = imgObject.src;
+            this.id = imgObject.id;
+            this.classList.add("img-fluid", "rounded");
+            this.likes = 0;
+            this.name = imgObject.name;
+        }
 
-        cat.likes = 0;
-        cat.name = imgObject.name;
+        updateCounter() {
+            document.getElementById(`likes-${this.id}`).textContent=`${this.likes.toString()} likes for this cat`;
+        };
+    }
+
+    imgObjects.forEach(function (imgObject) {
+        const cat = new Cat(imgObject);
         cat.addEventListener("click", function () {
             this.likes++;
-            updateCounter(cat);
+            this.updateCounter();
         }, false);
 
         cats.push(cat);
     });
 
-
-
     return cats;
 })();
-
-const updateCounter = function (cat) {
-    document.getElementById(`likes-${cat.id}`).textContent=`${cat.likes.toString()} likes for this cat`;
-};

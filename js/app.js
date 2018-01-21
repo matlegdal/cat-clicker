@@ -7,7 +7,11 @@
         li.id = `selector-${cat.id}`;
 
         li.addEventListener("click", function () {
-            selectCat(this);
+            const items = document.getElementsByClassName("cat-list-item");
+            for (let i = 0; i<items.length; i++) {
+                items[i].classList.remove("active");
+            }
+            li.classList.add("active");
             displayCat(cat);
         }, false);
 
@@ -30,14 +34,6 @@ function displayCat(cat) {
     catLikes.textContent = `${cat.likes.toString()} likes for this cat`;
     catLikes.id = `likes-${cat.id}`;
     div.appendChild(catLikes);
-}
-
-function selectCat(li) {
-    const items = document.getElementsByClassName("cat-list-item");
-    for (let i = 0; i<items.length; i++) {
-        items[i].classList.remove("active");
-    }
-    li.classList.add("active");
 }
 
 displayCat(cats[0]);
