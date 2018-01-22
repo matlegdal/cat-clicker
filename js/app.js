@@ -58,12 +58,10 @@ const cats = (function catLoader () {
             catLikes.id = `likes-${this.id}`;
             div.appendChild(catLikes);
         }
-
     }
 
     imgObjects.forEach(function (imgObject) {
         const cat = new Cat(imgObject);
-        cat.addEventListener("click", cat.updateCounter, false);
         cats.push(cat);
     });
 
@@ -87,3 +85,10 @@ const cats = (function catLoader () {
 
 // Initialise the displayed cat to the first cat
 cats[0].displayCat();
+
+// Add the event listener to the cat image.
+document.getElementById('displayCat').addEventListener('click', function(event) {
+    if (event.target.nodeName === "IMG") {
+        event.target.updateCounter();
+    }
+});
