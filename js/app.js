@@ -70,6 +70,9 @@ const cats = (function catLoader () {
 
 // Generates the list of cats on the left
 (function listCats() {
+    const ul = document.createElement('ul');
+    ul.classList.add("list-group");
+
     cats.forEach(function(cat){
         const li = document.createElement("li");
         li.textContent = cat.name.toString();
@@ -77,9 +80,10 @@ const cats = (function catLoader () {
         li.id = `selector-${cat.id}`;
 
         li.addEventListener("click", () => cat.selectCat(li), false);
-
-        document.getElementById("listCats").appendChild(li);
+        ul.appendChild(li);
     });
+    
+    document.getElementById("listCats").appendChild(ul);
     document.getElementById(`selector-${cats[0].id}`).classList.add("active")
 })();
 
